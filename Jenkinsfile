@@ -42,7 +42,7 @@ pipeline {
         // }
         stage('Configure web app with ansible') {
             steps {
-                sh "ansible-playbook play.yaml -i aws_ec2.yaml -i sta.inv --private-key ${SSH_KEY_CREDENTIAL}"
+                sh "ansible-playbook play.yaml -i aws_ec2.yaml --private-key ${SSH_KEY_CREDENTIAL}"
             }
         }
     }
