@@ -10,6 +10,7 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
         AWS_CONFIGURE = credentials('AWS_Creds')
         STACK_NAME = "myEc2Stack"
+        SSH_KEY_CREDENTIAL = credentials('Private_key')
     }
 
     stages {
@@ -41,9 +42,8 @@ pipeline {
         // }
         stage('Configure web app with ansible') {
             steps {
-                withEnv(['SSH_KEY_CREDENTIAL = credentials(\'Private_key\')']){
-                    sh "ansible-playbook play.yaml -i aws_ec2.yaml --private-key ${SSH_KEY_CREDENTIAL}"
-                }
+                //withEnv(['SSH_KEY_CREDENTIAL = credentials(\'Private_key\')'])
+                sh "ansible-playbook play.yaml -i aws_ec2.yaml --private-key ${SSH_KEY_CREDENTIAL}"
             }
         }
     }
