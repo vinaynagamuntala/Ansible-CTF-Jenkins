@@ -28,9 +28,9 @@ Resources:
         - !Ref EC2InstanceSecurityGroup  
       Tags: 
         - Key: "Name"
-          Value: "vinay.nagamuntala@cloudeq.com"  
-        - Key: "Purpose"
-          Value: "Transunion_Bootcamp_Demo"
+          Value: "Ansible-host-machine"  
+        - Key: "Owner"
+          Value: "vinay.nagamuntala@cloudeq.com"
 
 Outputs:
   EC2Instance1Id:
