@@ -40,14 +40,11 @@ pipeline {
         //     }
         // }
         stage('Configure web app with ansible') {
-            withEnv(['SSH_KEY_CREDENTIAL = credentials(\'Private_key\')']) {
-                //steps {
-                //withCredentials([sshUserPrivateKey(credentialsId: 'Private_key')])
-                sh "ansible-playbook play.yaml -i aws_ec2.yaml --private-key ${SSH_KEY_CREDENTIAL}"
-                //}
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'Private_key', usernameVariable: 'ec2-user')]) {
+                    sh "ansible-playbook play.yaml -i aws_ec2.yaml --private-key=$Private_key"
+                }
             }
-
         }
-
     }
 }
