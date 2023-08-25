@@ -27,22 +27,22 @@ pipeline {
                 sh 'aws sts get-caller-identity'
             }
         }
-        stage('CloudFormation stack Provision') {
-            steps {
+        // stage('CloudFormation stack Provision') {
+        //     steps {
 
-                sh "aws cloudformation create-stack --stack-name ${env.STACK_NAME} --template-body file://app.yaml"
-            }
-        }
-        stage('Wait for CloudFormation Stack Creation') {
-            steps {
+        //         sh "aws cloudformation create-stack --stack-name ${env.STACK_NAME} --template-body file://app.yaml"
+        //     }
+        // }
+        // stage('Wait for CloudFormation Stack Creation') {
+        //     steps {
 
-                sh "aws cloudformation wait stack-create-complete --stack-name ${env.STACK_NAME}"
-            }
-        }
+        //         sh "aws cloudformation wait stack-create-complete --stack-name ${env.STACK_NAME}"
+        //     }
+        // }
         stage('Configure web app with ansible') {
             steps {
 
-                sh "ansiblePlaybook(credentialsId: '${Private_key}', inventory: 'aws_ec2.yaml', playbook: 'play.yaml')"
+               credentials(sh "ansiblePlaybook(credentialsId: 'Private_key', inventory: 'aws_ec2.yaml', playbook: 'play.yaml')")
             }
         }
     }
