@@ -42,7 +42,7 @@ pipeline {
         stage('Configure web app with ansible') {
             steps {
 
-               credentials(sh "ansiblePlaybook(credentialsId: 'Private_key', inventory: 'aws_ec2.yaml', playbook: 'play.yaml')")
+               credentials(sh 'ansiblePlaybook(credentialsId: 'Private_key', inventory: 'aws_ec2.yaml', playbook: 'play.yaml')')
             }
         }
     }
