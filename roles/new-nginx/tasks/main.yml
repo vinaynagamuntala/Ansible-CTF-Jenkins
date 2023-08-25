@@ -1,0 +1,31 @@
+---
+- name: Install httpd package
+  yum:
+    name: httpd
+    state: present
+  become: yes
+
+- name: Start httpd service and enable it on boot
+  systemd:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Copy custom content to index.html
+  copy:
+    src: templates/
+    dest: /var/www/html/
+  notify:
+    - Restart httpd
+  ignore_errors: yes
+  register: copy_result
+
+- name: Ensure custom content was copied successfully
+  debug:
+    msg: "Custom content copied successfully."
+  when: copy_result is success
+
+- name: Handle if copy task failed
+  debug:
+    msg: "Custom content copy failed."
+  when: copy_result is failed

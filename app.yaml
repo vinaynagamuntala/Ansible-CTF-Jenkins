@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Resources:
+  EC2InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Security group for EC2 instances"
+      VpcId: vpc-076eb9b0fa60396b5
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+
+  EC2Instance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0f34c5ae932e6f0e4
+      InstanceType: t2.micro
+      KeyName: N.V.Vinay
+      SubnetId: subnet-0fcdacce4c76dd565
+      PropagateTagsToVolumeOnCreation: true     
+      SecurityGroupIds:
+        - !Ref EC2InstanceSecurityGroup  
+      Tags: 
+        - Key: "Name"
+          Value: "vinay.nagamuntala@cloudeq.com"  
+        - Key: "Purpose"
+          Value: "Transunion_Bootcamp_Demo"
+
+Outputs:
+  EC2Instance1Id:
+    Description: "Instance ID of EC2Instance1"
+    Value: !Ref EC2Instance1
+    Export:
+      Name: EC2Instance1
+
+  SecurityGroupId:
+    Description: "Security Group ID of EC2InstanceSecurityGroup"
+    Value: !Ref EC2InstanceSecurityGroup
+    Export:
+      Name: EC2InstanceSecurityGroup

@@ -1,0 +1,6 @@
+---
+- name: Configuring httpd on  hosts
+  hosts: aws_ec2
+  become: yes
+  roles:
+    - role: new-nginx
