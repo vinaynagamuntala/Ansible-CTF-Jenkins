@@ -43,7 +43,7 @@ pipeline {
             withEnv(['SSH_KEY_CREDENTIAL = credentials(\'Private_key\')']) {
                 steps {
                 //withCredentials([sshUserPrivateKey(credentialsId: 'Private_key')])
-                sh "ansible-playbook -i aws_ec2.yaml --private-key=$Private_key play.yaml"
+                sh "ansible-playbook play.yaml -i aws_ec2.yaml --private-key ${SSH_KEY_CREDENTIAL}"
                 }
             }
 
