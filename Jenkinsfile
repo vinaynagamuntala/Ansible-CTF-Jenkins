@@ -41,8 +41,7 @@ pipeline {
         }
         stage('Configure web app with ansible') {
             steps {
-                sh "yum install pip"
-                sh "pip install ansible"
+
                 sh "ansible-playbook -i aws_ec2.yaml play.yaml --private-key=${Private_key}"
             }
         }

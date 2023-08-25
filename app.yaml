@@ -22,7 +22,7 @@ Resources:
       ImageId: ami-0f34c5ae932e6f0e4
       InstanceType: t2.micro
       KeyName: N.V.Vinay
-      SubnetId: subnet-0fcdacce4c76dd565
+      SubnetId: subnet-02e4e6408eb56662c
       PropagateTagsToVolumeOnCreation: true     
       SecurityGroupIds:
         - !Ref EC2InstanceSecurityGroup  
