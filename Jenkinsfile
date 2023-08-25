@@ -42,7 +42,7 @@ pipeline {
         stage('Configure web app with ansible') {
             steps {
 
-                sh "ansible-playbook -i aws_ec2.yaml play.yaml --private-key=${Private_key}"
+                sh "ansiblePlaybook(credentialsId: '${Private_key}', inventory: 'aws_ec2.yaml', playbook: 'play.yaml')"
             }
         }
     }
