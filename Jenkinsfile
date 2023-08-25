@@ -1,10 +1,10 @@
 pipeline {
     agent any
     
-    tools {
-        terraform'terraform'
-        ansible'ansible'
-    }
+    // tools {
+    //     terraform'terraform'
+    //     ansible'ansible'
+    // }
 
     environment {
         AWS_DEFAULT_REGION = "us-east-1"
@@ -37,8 +37,9 @@ pipeline {
         }
         stage('Configure web app with ansible') {
             steps {
-
-                sh 'ansible-playbook -i aws_ec2.yaml play.yaml --private-key=${Private_key}'
+                sh "sudo yum install pip -y"
+                sh "pip install ansible"
+                sh "ansible-playbook -i aws_ec2.yaml play.yaml --private-key=${Private_key}"
             }
         }
     }
