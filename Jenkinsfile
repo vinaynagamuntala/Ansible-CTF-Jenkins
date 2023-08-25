@@ -15,9 +15,9 @@ pipeline {
     stages {
         stage('git checkout') {
             steps{
-                //sh "git clone https://github.com/vinaynagamuntala/Ansible-CTF-Jenkins.git"
-                sh "cd Ansible-CTF-Jenkins"
-                sh "git pull origin main"
+                sh "git clone https://github.com/vinaynagamuntala/Ansible-CTF-Jenkins.git"
+                //sh "cd Ansible-CTF-Jenkins"
+                //sh "git pull origin main"
 
             }
         }
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Configure web app with ansible') {
             steps {
-                sh "sudo yum install pip -y"
+                sh "yum install pip"
                 sh "pip install ansible"
                 sh "ansible-playbook -i aws_ec2.yaml play.yaml --private-key=${Private_key}"
             }
