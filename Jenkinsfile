@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps{
-                sh "git clone "
+                sh "git clone https://github.com/vinaynagamuntala/Ansible-CTF-Jenkins.git"
             }
         }
         stage('aws setup Check') {
