@@ -15,6 +15,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps{
+                sh "rm -rf Ansible-CTF-Jenkins"
                 sh "git clone https://github.com/vinaynagamuntala/Ansible-CTF-Jenkins.git"
                 //sh "cd Ansible-CTF-Jenkins"
                 //sh "git pull origin main"
