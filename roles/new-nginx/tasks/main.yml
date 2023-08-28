@@ -13,7 +13,7 @@
 
 - name: Copy custom content to index.html
   copy:
-    src: templates/
+    src: files/
     dest: /var/www/html/
   notify:
     - Restart httpd

@@ -10,9 +10,9 @@ pipeline {
         AWS_CONFIGURE = credentials('AWS_Creds')
         SSH_KEY_CREDENTIAL = credentials('Private_key')
         STACK_NAME = "myEc2Stack"
-        Template_Path = "app.yaml"
-        Parameter_Key = "Environment"
-        Parameter_Value = "dev"
+        TEMPLATE_PATH = "app.yaml"
+        PARAMETER_KEY = "Environment"
+        PARAMETER_VALUE = "dev"
     }
 
     stages {
@@ -32,7 +32,7 @@ pipeline {
             steps {
 
                 //sh "aws cloudformation create-stack --stack-name ${env.STACK_NAME} --template-body file://app.yaml"
-                sh "aws cloudformation deploy --template-file ${Template_Path} --stack-name ${STACK_NAME} --parameter-overrides ${Parameter_Key}=${Parameter_Value}
+                sh "aws cloudformation deploy --template-file ${TEMPLATE_PATH} --stack-name ${STACK_NAME} --parameter-overrides ${PARAMETER_KEY}=${PARAMETER_VALUE}
 "
             }
         }

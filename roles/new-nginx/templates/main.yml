@@ -1,0 +1,10 @@
+# Jinja2 Example
+# ---
+# - name: Write hostname
+#   hosts: all
+#   tasks:
+#   - name: write hostname using jinja2
+#     ansible.builtin.template:
+#        src: templates/test.j2
+#        dest: /tmp/hostname
+#My name is {{ ansible_facts['hostname'] }}
